@@ -1,4 +1,4 @@
-## code to prepare figure for Section 2
+## code to prepare Figure 1
 
 ## BEGIN SETUP ##
 
