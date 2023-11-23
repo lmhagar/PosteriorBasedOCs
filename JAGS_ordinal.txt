@@ -1,0 +1,18 @@
+
+
+model {
+   x[1:5] ~ dmulti(p[], N)
+   # Priors
+   C <- 100000; zero ~ dpois(phi)
+   prod[1] <- 1 
+   for (j in 1 : 4)
+   {
+    z[j] ~ dbeta(a[j], b[j]); p[j] <- z[j]*prod[j]
+    prod[j+1] <- prod[j]*(1-z[j])
+    log.beta[j] <- -loggam(a[j]) + loggam(b[j]) 
+                   -((a[j]-1)*log(z[j]))-((b[j]-1)*log(1-z[j])) + C
+   } 
+   p[5] <- prod[5]
+   phi <- sum(log.beta[1:4])
+     
+}
