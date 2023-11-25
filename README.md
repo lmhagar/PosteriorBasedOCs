@@ -1,7 +1,7 @@
 # PosteriorBasedOCs
 Supplementary code for Scalable Design with Posterior-Based Operating Characteristics manuscript
 
-The code files for this manuscript are divided into several groups.
+The code files for this manuscript are divided into five groups.
 
 Group 1: create Figure 1 for illustrative example
 - 01-code-for-figure-1: processes the Likert data and approximates posteriors for Figure 1
@@ -17,3 +17,7 @@ Group 3: conduct numerical studies in Sections 4, 5, and Appendix C.2
 - priors-group-2.csv: parameters for the beta design priors (group 1)
 
 Group 4: conduct numerical studies in Appendix C.3
+- 05-functions-for-app-c3: defines functions for the supplementary numerical studies with the multinomial example
+- 06-multinomial-study-alg-1: conducts the numerical studies and generates the figures for these sections
+
+Group 5: conduct numerical studies in Appendix D

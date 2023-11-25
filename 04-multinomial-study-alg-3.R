@@ -421,7 +421,7 @@ write.csv(z, "z_mat1.csv", row.names = FALSE)
 ## create matrices for centre contour plot in Figure 3 (based on the average
 ## of 1000 sample size calculations)
 
-## read in the sample sizes and posterior probabilties (logit scale) for 
+## read in the sample sizes and posterior probabilities (logit scale) for 
 ## all 1000 repetitions
 n_lows <- as.numeric(read.csv("sec4p3_sobol_8192_summary.csv")[,7])
 n_mids <- as.numeric(read.csv("sec4p3_sobol_8192_summary.csv")[,8])
@@ -549,8 +549,8 @@ for (j in 1:length(y)){
 w_full2 <- w
 
 ## write output to a .csv file  
-write.csv(z_full2, "z_full100_mat2.csv", row.names = FALSE)
-write.csv(w_full2, "w_full100_mat2.csv", row.names = FALSE)
+write.csv(z_full2, "z_full_mat2.csv", row.names = FALSE)
+write.csv(w_full2, "w_full_mat2.csv", row.names = FALSE)
 
 ## create the three contour plots and output as .pdf file for the article
 pdf(file = "Figure3OC.pdf",   # The directory you want to save the file in
@@ -588,7 +588,6 @@ w_full <- matrix(unlist(read.csv("w_full_mat.csv")), nrow = 21, ncol = 50)
 contour(x, y, w_full, levels = seq(0.02, 0.08, 0.005), xlab = expression(italic("n")), 
         xlim = c(100,120), axes = FALSE, cex.lab = 1.25,
         ylab = expression(gamma),  main = "Type I Error Rate", labcex = 0.8, method = "edge")
-# points(x = first_rep[2], y = 1/(1 + exp(-opt_gamma)), pch = 19, col = adjustcolor("grey50", 0.75))
 contour(x, y, w_full, levels = c(0.05), col = "firebrick", add = TRUE, labcex = 0.8, method = "edge")
 contour(x, y, z_full, levels = c(0.8), col = "seagreen", add = TRUE, labcex = 0.8, labels = "", method = "edge")
 axis(side = 1, at = seq(100, 120, 5), cex.axis = 1.15)
@@ -601,7 +600,6 @@ w_full2 <- matrix(unlist(read.csv("w_full_mat2.csv")), nrow = 21, ncol = 50)
 contour(x, y, w_full2, levels = c(seq(0.02, 0.045, 0.005),seq(0.055, 0.08, 0.005)), 
         xlab = expression(italic("n")), xlim = c(100,120), axes = FALSE, cex.lab = 1.25,
         ylab = expression(gamma),  main = "Type I Error Rate", labcex = 0.8, method = "edge")
-# points(x = first_rep[2], y = 1/(1 + exp(-opt_gamma)), pch = 19, col = adjustcolor("grey50", 0.75))
 contour(x, y, w_full2, levels = c(0.05), col = "firebrick", add = TRUE, labcex = 0.8, method = "edge")
 contour(x, y, z_full2, levels = c(0.8), col = "seagreen", add = TRUE, labcex = 0.8, labels = "", method = "edge")
 axis(side = 1, at = seq(100, 120, 5), cex.axis = 1.15)
@@ -633,10 +631,8 @@ contour(x, y, z_full, levels = c(seq(0.68, 0.8, 0.015), seq(0.83, 0.86, 0.015)),
 axis(side = 1, at = seq(100, 120, 5), cex.axis = 1.15)
 axis(side = 2, at = seq(0.91, 0.955, 0.015), cex.axis = 1.15)
 box()
-# points(x = first_rep[2], y = 1/(1 + exp(-opt_gamma)), pch = 19, col = adjustcolor("grey50", 0.75))
 contour(x, y, w_full, levels = c(0.05), col = "firebrick", add = TRUE, labcex = 0.8,labels = "", method = "edge") 
 contour(x, y, z_full, levels = c(0.8), col = "seagreen", add = TRUE, labcex = 0.8, method = "edge")
-# contour(x, y, z_full, levels = c(0.815), col = "black", add = TRUE, method = "edge", labcex = 0.8)
 contour(x, y, z_full, levels = c(0.815), col = "black", add = TRUE, method = "edge", labcex = 0.8)
 axis(side = 1, at = seq(100, 120, 5), cex.axis = 1.15)
 axis(side = 2, at = seq(0.91, 0.955, 0.015), cex.axis = 1.15)
@@ -645,10 +641,8 @@ box()
 contour(x, y, z_full2, levels = c(seq(0.68, 0.86, 0.015)), 
         xlab = expression(italic("n")), xlim = c(100,120), axes = FALSE, cex.lab = 1.25,
         ylab = expression(gamma),  main = "Power", labcex = 0.8, method = "edge")
-# points(x = first_rep[2], y = 1/(1 + exp(-opt_gamma)), pch = 19, col = adjustcolor("grey50", 0.75))
 contour(x, y, w_full2, levels = c(0.05), col = "firebrick", add = TRUE, labcex = 0.8,labels = "", method = "edge") 
 contour(x, y, z_full2, levels = c(0.8), col = "seagreen", add = TRUE, labcex = 0.8, method = "edge")
-# contour(x, y, z_full, levels = c(0.815), col = "black", add = TRUE, method = "edge", labcex = 0.8)
 contour(x, y, z_full2, levels = c(0.815), col = "black", add = TRUE, method = "edge", labcex = 0.8)
 axis(side = 1, at = seq(100, 120, 5), cex.axis = 1.15)
 axis(side = 2, at = seq(0.91, 0.955, 0.015), cex.axis = 1.15)
@@ -670,8 +664,8 @@ d_frame1C <- data.frame(x = dPRNG24k$x, y = dPRNG24k$y, type = "CPRNG24k")
 
 plotC1a <- ggplot(data=d_frame1, aes(x=x, y= y)) + theme_bw() +
   geom_polygon(aes(y=y), col="gray10", fill="snow1", size=0.75, alpha=0) +
-  geom_polygon(aes(x = d_frame1B$x, y= d_frame1B$y), col="steelblue", fill="snow1", size=0.75, alpha=0) +
-  geom_polygon(aes(x = d_frame1C$x, y= d_frame1C$y), col="firebrick", fill="snow1", size=0.75, alpha=0) +
+  geom_polygon(aes(x = d_frame1B$x, y= d_frame1B$y), col="#077DAA", fill="snow1", size=0.75, alpha=0) +
+  geom_polygon(aes(x = d_frame1C$x, y= d_frame1C$y), col="#f49b3f", fill="snow1", size=0.75, alpha=0) +
   geom_polygon(aes(y=y), col="gray10", fill="snow1", size=0.75, alpha=0) +
   labs(x=bquote(italic('n')), y=" ") + 
   theme(plot.title = element_text(margin = unit(c(0, 0, 5, 0), "mm"),
@@ -691,8 +685,8 @@ d_frame2C <- data.frame(x = ddPRNG24k$x, y = ddPRNG24k$y, type = "CPRNG24k")
 ## create density plot for induced prior on theta1
 plotC1b <- ggplot(data=d_frame2, aes(x=x, y= y)) + theme_bw() +
   geom_polygon(aes(y=y), col="gray10", fill="snow1", size=0.75, alpha=0) +
-  geom_polygon(aes(x = d_frame2B$x, y= d_frame2B$y), col="steelblue", fill="snow1", size=0.75, alpha=0) +
-  geom_polygon(aes(x = d_frame2C$x, y= d_frame2C$y), col="firebrick", fill="snow1", size=0.75, alpha=0) +
+  geom_polygon(aes(x = d_frame2B$x, y= d_frame2B$y), col="#077DAA", fill="snow1", size=0.75, alpha=0) +
+  geom_polygon(aes(x = d_frame2C$x, y= d_frame2C$y), col="#f49b3f", fill="snow1", size=0.75, alpha=0) +
   geom_polygon(aes(y=y), col="gray10", fill="snow1", size=0.75, alpha=0) +
   labs(x=bquote(gamma), y=" ") + 
   theme(plot.title = element_text(margin = unit(c(0, 0, 5, 0), "mm"),
@@ -710,7 +704,7 @@ plotC1c <- ggplot(data=dcomb, aes(x=x, y= y)) + theme_bw() +
                      c(expression("Sobol' ("*italic(m)*" = 8196)  "), 
                        expression("PRNG ("*italic(m)*" = 8196)  "), 
                        expression("PRNG ("*italic(m)*" = 24000)")),
-                     values = c("black", "steelblue", "firebrick")) +
+                     values = c("black", "#077DAA", "#f49b3f")) +
   theme(legend.text=element_text(size=16)) 
 
 mylegend <- get_legend(plotC1c)
