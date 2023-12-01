@@ -425,16 +425,12 @@ fit1 <- data.frame(x = x_fit1, y = dnorm(x_fit1,m_1,sqrt(var_1)), type = "Algori
 plotC3a <-
   ggplot(data=df_MLEs, aes(df_MLEs$x)) + theme_bw() +
   geom_histogram(aes(y=..density..), position="identity", breaks = bins2, alpha=0.2, col = "grey25", size =1) +
-  # geom_histogram(aes(y = (stat(x) / sum(x))/binwidth2), breaks = bins2,
-  #                col="#1B86B4", 
-  #                fill="#077DAA", 
-  #                alpha = 0, size = 1) + 
   coord_cartesian(xlim = c(-9.65, -1)) +
   labs(title=bquote('Sampling Distribution of the MLE for logit('*italic(Z)[11]*')')) +
   labs(x=bquote('logit('*italic(Z)[11]*')'), y="Density\n") + 
   theme(plot.title = element_text(hjust = 0.5,size=17,face="bold")) + 
-  geom_area(data = d_xstar, aes(x=x, y=y), fill="white", col="#077DAA", alpha=0, size = 1) +
-  geom_area(data = fit1, aes(x=x, y=y), fill="white", col="#f49b3f", alpha=0, size = 1) +
+  geom_area(data = fit1, aes(x=x, y=y), fill="white", col="#077DAA", alpha=0, size = 1) +
+  geom_area(data = d_xstar, aes(x=x, y=y), fill="white", col="#f49b3f", alpha=0, size = 1) +
   theme(axis.text=element_text(size=13),
         axis.title=element_text(size=16)) +
   theme(axis.title.x = element_text(margin = unit(c(5, 0, 0, 0), "mm")))
@@ -472,7 +468,7 @@ delta_L <- -0.5; delta_U <- 4
 params = greens
 n_vals <- seq(90, 150, 1)
 
-sob_pwr <- sobol(8196, d = 9, randomize = "digital.shift", seed = 1)
+sob_pwr <- sobol(8192, d = 9, randomize = "digital.shift", seed = 1)
 
 ## first check the linear approximations using Algorithm 3
 for (k in 1:length(n_vals)){

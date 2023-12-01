@@ -701,8 +701,8 @@ plotC1c <- ggplot(data=dcomb, aes(x=x, y= y)) + theme_bw() +
   geom_line(aes(y = y, color=as.factor(type)), size = 1) +
   theme(legend.position="bottom") +
   scale_color_manual(name = " ", 
-                     c(expression("Sobol' ("*italic(m)*" = 8196)  "), 
-                       expression("PRNG ("*italic(m)*" = 8196)  "), 
+                     c(expression("Sobol' ("*italic(m)*" = 8192)  "), 
+                       expression("PRNG ("*italic(m)*" = 8192)  "), 
                        expression("PRNG ("*italic(m)*" = 24000)")),
                      values = c("black", "#077DAA", "#f49b3f")) +
   theme(legend.text=element_text(size=16)) 

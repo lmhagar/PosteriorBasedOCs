@@ -21,3 +21,9 @@ Group 4: conduct numerical studies in Appendix C.3
 - 06-multinomial-study-alg-1: conducts the numerical studies and generates the figures for these sections
 
 Group 5: conduct numerical studies in Appendix D
+- 07-weibull-data-2020: processes the ENIGH 2020 food data used for illustration
+- 08-code-for-figure-D1: reproduces Figure D.1 in the online supplement
+- 09-prior-elicitation: processes the ENIGH 2018 food data and uses the relevant posteriors
+                        to return design and analysis priors for this example
+- 10-functions-for-app-d2: defines functions used to conduct the numerical studies with the Weibull example
+- 11-weibull-study: conducts the numerical studies and generates the remaining figures for this section
