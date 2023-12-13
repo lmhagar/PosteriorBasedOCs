@@ -248,7 +248,6 @@ findGamma <- function(green_par, red_par, pwr, typeI, deltas, q,
       n_min <- n
       n <- 2*n
     }
-    print(c(lower, upper, sort(red_vec)[mid1], sort(green_vec)[mid2]))
   }
   
   ## get a lower point to construct linear approximations to the logits
@@ -280,7 +279,6 @@ findGamma <- function(green_par, red_par, pwr, typeI, deltas, q,
       green_min <- green_vec; red_min <- red_vec
       n_min <- n
     }
-    print(c(lower, upper, sort(red_vec)[mid1], sort(green_vec)[mid2]))
   }
   
   ## construct the linear approximations for the green and red groups
@@ -308,10 +306,7 @@ findGamma <- function(green_par, red_par, pwr, typeI, deltas, q,
     else{
       lower_temp <- n
     }
-    print(c(lower_temp, upper_temp, sort(red_vec)[mid1], sort(green_vec)[mid2]))
   }
-  
-  print(c(lower_temp, upper_temp))
   
   ii <- 0
   n <- max(10,upper_temp)
@@ -361,7 +356,6 @@ findGamma <- function(green_par, red_par, pwr, typeI, deltas, q,
         green_min <- green_vec; red_min <- red_vec
       }
     }
-    print(c(lower, upper, sort(red_vec)[mid1], sort(green_vec)[mid2]))
     
     ## now use the probabilities at n and the other bound for binary search to get
     ## better linear approximations on the logit scale. We then explore sample sizes
@@ -387,16 +381,12 @@ findGamma <- function(green_par, red_par, pwr, typeI, deltas, q,
       else{
         lower_temp <- n
       }
-      print(c(lower_temp, upper_temp, sort(red_vec)[mid1], sort(green_vec)[mid2]))
     }
     n <- upper_temp
     ## we check how much the sample size recommendation changed with respect to
     ## what we started this iteration of the floor loop with; if there is not
     ## much change, then we just take this new recommendation as n(0)
-    print(c(n_last, n))
   }
-  
-  print(c(n, lower, upper, lower_temp, upper_temp, n_last == n_min, n_last == n_max))
   
   ## compute the posterior probabilities using Algorithm 3 for all m points for
   ## each Sobol' sequence at the initial sample size n(0)
@@ -413,8 +403,6 @@ findGamma <- function(green_par, red_par, pwr, typeI, deltas, q,
                               delta = deltas, u = sob_red[i,2:9],
                               hyper = cbind(alphas1, betas1, alphas2, betas2))
   }
-  
-  print(c(n, quantile(red_vec, 1 - typeI), quantile(green_vec, 1 - pwr)))
   
   ## save the logits of the probabilities
   green_vec_n0 <- green_vec
@@ -458,7 +446,6 @@ findGamma <- function(green_par, red_par, pwr, typeI, deltas, q,
     n_low <- n
     ## choose a larger sample size n(1)
     n <- max(ceiling(1.1*n), n + 5)
-    print(n)
     green_vec <- NULL
     red_vec <- NULL
     ## use Algorithm 3 to approximate the posterior probabilities at all m points
@@ -507,7 +494,6 @@ findGamma <- function(green_par, red_par, pwr, typeI, deltas, q,
         if (sort(red_vec)[mid1] <= sort(green_vec)[mid2]){
           upper <- n
         }
-        print(c(lower, upper, sort(red_vec)[mid1] , sort(green_vec)[mid2]))
       }
     }
   }
@@ -519,7 +505,6 @@ findGamma <- function(green_par, red_par, pwr, typeI, deltas, q,
     n_high <- n
     ## choose a smaller sample size n(1)
     n <- min(floor(0.9*n), n - 5)
-    print(n)
     green_vec <- NULL
     red_vec <- NULL
     ## use Algorithm 3 to approximate the posterior probabilities at all m points
@@ -566,7 +551,6 @@ findGamma <- function(green_par, red_par, pwr, typeI, deltas, q,
         if (sort(red_vec)[mid1] > sort(green_vec)[mid2]){
           lower <- n
         }
-        print(c(lower, upper, sort(red_vec)[mid1], sort(green_vec)[mid2]))
       }
     }
   }
@@ -610,18 +594,15 @@ findGamma <- function(green_par, red_par, pwr, typeI, deltas, q,
     else{
       lower <- n
     }
-    print(c(lower, upper, sort(red_aug)[mid1], sort(green_aug)[mid2]))
   }
   
   n <- upper
-  print(n)
   ## we don't need to reapproximate the same posterior probabilities if we have already explored
   ## this sample size
   if (n == n_high){
     
     ## do not need to do this; it is just so we have three sample sizes to construct each contour plot
     n <- ifelse(n0 == n_high, max(ceiling(1.1*n0), n0 + 5), max(ceiling(1.1*n1), n1 + 5))
-    print(n)
     green_vec <- NULL
     red_vec <- NULL
     ## use Algorithm 3 to approximate the posterior probabilities at all m points
@@ -669,7 +650,6 @@ findGamma <- function(green_par, red_par, pwr, typeI, deltas, q,
     
     ## do not need to do this; it is just so we have three sample sizes to construct each contour plot
     n <- ifelse(n0 == n_low, min(floor(0.9*n0), n0 - 5), min(floor(0.9*n1), n1 - 5))
-    print(n)
     green_vec <- NULL
     red_vec <- NULL
     ## use Algorithm 3 to approximate the posterior probabilities at all m points
@@ -690,8 +670,6 @@ findGamma <- function(green_par, red_par, pwr, typeI, deltas, q,
     n2 <- n
     
     n_final <- ifelse(n1 < n0, 1, 0)
-    
-    print(c("End:", n0, n1, n2))
     
     ## first component of list is (n, gamma, relevant order statistic of green probabilities, confirmatory type I error
     ## estimate, confirmatory power estimate, n^((0)), n^((1)), n^((2)))
@@ -739,8 +717,6 @@ findGamma <- function(green_par, red_par, pwr, typeI, deltas, q,
   green_vec_n2 <- green_vec
   red_vec_n2 <- red_vec
   n2 <- n
-  
-  print(c(n, sort(red_vec)[mid1], sort(green_vec)[mid2]))
   
   ## first component of list is (n, gamma, relevant order statistic of green probabilities, confirmatory type I error
   ## estimate, confirmatory power estimate, n^((0)), n^((1)), n^((2)))
@@ -827,7 +803,6 @@ findGammaFull <- function(green_par, red_par, pwr, typeI, deltas, q,
       n_min <- n
       n <- 2*n
     }
-    print(c(lower, upper, sort(red_vec)[mid1], sort(green_vec)[mid2]))
   }
   
   ## implement binary search given these bounds for the sample size
@@ -854,11 +829,9 @@ findGammaFull <- function(green_par, red_par, pwr, typeI, deltas, q,
     else{
       lower <- n
     }
-    print(c(lower, upper, sort(red_vec)[mid1], sort(green_vec)[mid2]))
   }
   
   n <- upper
-  print(n)
   
   ## list is (n, gamma, relevant order statistic of green probabilities, confirmatory type I error
   ## estimate, confirmatory power estimate)

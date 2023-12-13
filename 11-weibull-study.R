@@ -95,7 +95,6 @@ red_highs <- read.csv("wei_sobol_8192_red_large.csv")
 z_full <- matrix(0, nrow = 26, ncol = 60)
 w_full <- matrix(0, nrow = 26, ncol = 60)
 for (k in 1:1000){
-  if (k %% 25 == 0){print(k)}
   ## repeat the process from 04-multinomial-study-alg3.R with Weibull model
   green_low <- unlist(green_lows[k,]); green_mid <- unlist(green_mids[k,]); 
   green_high <- unlist(green_highs[k,])

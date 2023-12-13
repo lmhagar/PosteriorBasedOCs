@@ -437,7 +437,6 @@ red_highs <- read.csv("sec4p3_sobol_8192_red_large.csv")
 z_full <- matrix(0, nrow = 21, ncol = 50)
 w_full <- matrix(0, nrow = 21, ncol = 50)
 for (k in 1:1000){
-  if (k %% 25 == 0){print(k)}
   ## the process below repeats the process detailed for sample size calculation
   ## 1 above for all repetitions k = {1, 2, ..., 1000}
   green_low <- unlist(green_lows[k,]); green_mid <- unlist(green_mids[k,]); 
