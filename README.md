@@ -10,14 +10,14 @@ Group 1: create Figure 1 for illustrative example
 Group 2: create Figure 2 to visualize the design priors
 - 02-code-for-figure-2: takes parameters for the specified design priors and visualizes the induced priors
 
-Group 3: conduct numerical studies in Sections 4, 5, and Appendix C.2
+Group 3: conduct numerical studies in Sections 4, 5, and Appendix C.3
 - 03-functions-for-sec-4-5: defines functions used to conduct the numerical studies with the multinomial example
 - 04-multinomial-study-alg-3: conducts the numerical studies and generates the figures for these sections
 - priors-group-1.csv: parameters for the beta design priors (group 1)
 - priors-group-2.csv: parameters for the beta design priors (group 1)
 
-Group 4: conduct numerical studies in Appendix C.3
-- 05-functions-for-app-c3: defines functions for the supplementary numerical studies with the multinomial example
+Group 4: conduct numerical studies in Appendix C.4
+- 05-functions-for-app-c4: defines functions for the supplementary numerical studies with the multinomial example
 - 06-multinomial-study-alg-1: conducts the numerical studies and generates the figures for these sections
 
 Group 5: conduct numerical studies in Appendix D
